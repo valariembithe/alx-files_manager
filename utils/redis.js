@@ -4,6 +4,7 @@ import { createClient } from 'redis';
 class RedisClient {
   constructor() {
     this.client = createClient();
+    this.isClientConnected = true;
     this.client.on('error', (err) => {
       console.error('Redis client failed to connect:', err.toString() || err.message);
       this.isClientConnected = false;
