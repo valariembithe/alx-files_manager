@@ -5,12 +5,12 @@ import envLoader from './env_loader';
 class DBClient {
   constructor() {
     env_loader();
-    const host = process.env.DB_HOST || localhost;
+    const host = process.env.DB_HOST || 'localhost';
     const port = process.env.DB_PORT || 27017;
-    const database = process.env.DB_DATABASE || files_manager;
+    const database = process.env.DB_DATABASE || 'files_manager';
     const db_url = `mongodb://${host}:${port}/${database}`;
 
-    this.client = new mongodb.MongoClient(db_url, {useUnifiedTopology: true});
+    this.client = new mongodb.MongoClient(db_url, { useUnifiedTopology: true });
     this.client.connect();
   }
 
@@ -25,7 +25,23 @@ class DBClient {
   async nbFiles() {
     return this.client.db().collection('files').countDocuments();
   }
+
+  /**
+   * Retrieves a reference to the `users` collection.
+   * @returns {Promise<Collection>}
+   */
+  async usersCollection() {
+    return this.client.db().collection('users');
+  }
+
+  /**
+   * Retrieves a reference to the `files` collection.
+   * @returns {Promise<Collection>}
+   */
+  async filesCollection() {
+    return this.client.db().collection('files');
+  }
 }
 
-export default dbClient = new DBClient;
+export const dbClient = new DBClient();
 export default dbClient;
