@@ -22,13 +22,13 @@ class RedisClient {
     return promisify(this.client.GET).bind(this.client)(key);
   }
 
-  async set(key, value, time) {
-    return promisify(this.client.SETTEX)
-      .bind(this.client)(key, time, value);
+  async set(key, value, duration) {
+    await promisify(this.client.SETTEX)
+      .bind(this.client)(key, duration, value);
   }
 
   async del(key) {
-    return promisify(this.client.DEL).bind(this.client)(key);
+    await promisify(this.client.DEL).bind(this.client)(key);
   }
 }
 
