@@ -1,4 +1,5 @@
 import { promisify } from 'util';
+import redis from 'redis';
 import { RedisClient } from "redis";
 
 class RedisClient {
