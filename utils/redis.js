@@ -1,6 +1,6 @@
 import { promisify } from 'util';
 import redis from 'redis';
-import { RedisClient } from "redis";
+import { createClient } from "redis";
 
 class RedisClient {
   constructor() {
