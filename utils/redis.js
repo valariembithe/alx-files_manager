@@ -19,6 +19,15 @@ class RedisClient {
       this.isClientConnected = true;
     });
   }
+
+  /**
+   * Checks if this client's connection to the Redis server is active.
+   * @returns {boolean}
+   */
+  isAlive() {
+    return this.isClientConnected;
+  }
+
   /**
    * Retrieves the value of a given key.
    * @param {String} key The key of the item to retrieve.
