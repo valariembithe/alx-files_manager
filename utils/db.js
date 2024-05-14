@@ -11,13 +11,12 @@ class DBClient {
 
     this.client.connect((error) => {
       if (error) {
-	console.error('MongoDB connection error:', error);
+	      console.error('MongoDB connection error:', error);
       } else {
-	console.log('Connected to MongoDB');
+	      console.log('Connected to MongoDB');
       }
+      this.db = this.client.db(database);
     });
-
-    this.db = this.client.db(database);
   }
 
   isAlive() {
